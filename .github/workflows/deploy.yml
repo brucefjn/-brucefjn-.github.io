@@ -13,7 +13,6 @@ permissions:
 jobs:
   build:
     runs-on: ubuntu-latest
-
     steps:
       - name: Check out repo
         uses: actions/checkout@v4
@@ -31,17 +30,6 @@ jobs:
       - name: Build Jupyter Book
         run: |
           jupyter-book build .
-
-      - name: Debug: list files
-        run: |
-          echo "PWD:"
-          pwd
-          echo "Top-level:"
-          ls
-          echo "_build:"
-          ls _build || echo "_build does not exist"
-          echo "_build/html:"
-          ls _build/html || echo "_build/html does not exist"
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
