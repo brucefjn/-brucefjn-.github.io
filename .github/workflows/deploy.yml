@@ -13,8 +13,6 @@ permissions:
 jobs:
   build:
     runs-on: ubuntu-latest
-    env:
-      JUPYTER_BOOK_NODEJS_NO_INSTALL: "1"  # don't prompt to install node
 
     steps:
       - name: Check out repo
@@ -25,15 +23,9 @@ jobs:
         with:
           python-version: "3.10"
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: "22"
-
       - name: Install dependencies
         run: |
           pip install -r requirements.txt
-          pip install jupyter-book
 
       - name: Build Jupyter Book
         run: |
@@ -51,3 +43,4 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
+
