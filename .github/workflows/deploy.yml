@@ -13,6 +13,9 @@ permissions:
 jobs:
   build:
     runs-on: ubuntu-latest
+    env:
+      JUPYTER_BOOK_NODEJS_NO_INSTALL: "1"  # don't prompt to install node
+
     steps:
       - name: Check out repo
         uses: actions/checkout@v4
@@ -21,6 +24,11 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: "3.10"
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
 
       - name: Install dependencies
         run: |
